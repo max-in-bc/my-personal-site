@@ -1,41 +1,35 @@
-# `angular-seed` — the seed for AngularJS apps
+# Max Gardiner (programmer) - `personal-site`
 
-This project is an application skeleton for a typical [AngularJS][angularjs] web app. You can use it
-to quickly bootstrap your angular webapp projects and dev environment for these projects.
+This site is just a simple way to display my skills, experience,
+and possibly some personal projects. I am making the project public because I have nothing to hide!!!
 
-The seed contains a sample AngularJS application and is preconfigured to install the Angular
-framework and a bunch of development and testing tools for instant web development gratification.
-
-The seed app doesn't do much, just shows how to wire two controllers and views together.
-
+Located at http://maxthecoder.ca
 
 ## Getting Started
 
-To get you started you can simply clone the `angular-seed` repository and install the dependencies:
+To get you started you can simply clone this repository and install the dependencies easily:
+```
+git clone https://github.com/maxgardiner/personal-site.git
+cd personal-site
+npm install
+```
+
+### Run the Application
+
+The simplest way to start this server is:
+
+```
+npm start
+```
+
+Now browse to the app at [`localhost:8000/index.html`][local-app-url].
 
 ### Prerequisites
 
-You need git to clone the `angular-seed` repository. You can get git from [here][git].
-
-We also use a number of Node.js tools to initialize and test `angular-seed`. You must have Node.js
-and its package manager (npm) installed. You can get them from [here][node].
-
-### Clone `angular-seed`
-
-Clone the `angular-seed` repository using git:
-
-```
-git clone https://github.com/angular/angular-seed.git
-cd angular-seed
-```
-
-If you just want to start a new project without the `angular-seed` commit history then you can do:
-
-```
-git clone --depth=1 https://github.com/angular/angular-seed.git <your-project-name>
-```
-
-The `depth=1` tells git to only pull down one commit worth of historical data.
+This project was initially built on a barebones skelaton, called `angular-seed`.
+Running and testing my site also uses a number of Node.js tools, as well as all
+of the barebones angular tools included with the  `angular-seed` project. You
+must have Node.js and its package manager (npm) installed. You can get them from [here][node].
 
 ### Install Dependencies
 
@@ -45,8 +39,7 @@ us manage and test the application.
 * We get the tools we depend upon via `npm`, the [Node package manager][npm].
 * We get the Angular code via `bower`, a [client-side code package manager][bower].
 * In order to run the end-to-end tests, you will also need to have the
-  [Java Development Kit (JDK)][jdk] installed on your machine. Check out the section on
-  [end-to-end testing](#e2e-testing) for more info.
+  [Java Development Kit (JDK)][jdk] installed on your machine.
 
 We have preconfigured `npm` to automatically run `bower` so we can simply do:
 
@@ -64,19 +57,9 @@ two new folders in your project.
 `angular-seed` changes this location through the `.bowerrc` file. Putting it in the `app` folder
 makes it easier to serve the files by a web server.*
 
-### Run the Application
-
-We have preconfigured the project with a simple development web server. The simplest way to start
-this server is:
-
-```
-npm start
-```
-
-Now browse to the app at [`localhost:8000/index.html`][local-app-url].
-
-
 ## Directory Layout
+
+**NEEDS UPDATING**
 
 ```
 app/                    --> all of the source files for the application
@@ -106,15 +89,16 @@ e2e-tests/            --> end-to-end tests
   scenarios.js          --> end-to-end scenarios to be run by Protractor
 ```
 
+**NEEDS UPDATING**
 
 ## Testing
 
-There are two kinds of tests in the `angular-seed` application: Unit tests and end-to-end tests.
+There are two kinds of tests: Unit tests and end-to-end tests.
 
 ### Running Unit Tests
 
-The `angular-seed` app comes preconfigured with unit tests. These are written in [Jasmine][jasmine],
-which we run with the [Karma][karma] test runner. We provide a Karma configuration file to run them.
+The app comes configured with unit tests. These are written in [Jasmine][jasmine],
+which we run with the [Karma][karma] test runner.
 
 * The configuration is found at `karma.conf.js`.
 * The unit tests are found next to the code they are testing and have an `_test.js` suffix (e.g.
@@ -144,7 +128,7 @@ npm run test-single-run
 <a name="e2e-testing"></a>
 ### Running End-to-End Tests
 
-The `angular-seed` app comes with end-to-end tests, again written in [Jasmine][jasmine]. These tests
+The app comes with end-to-end tests, again written in [Jasmine][jasmine]. These tests
 are run with the [Protractor][protractor] End-to-End test runner. It uses native events and has
 special features for Angular applications.
 
@@ -162,7 +146,7 @@ npm start
 ```
 
 In addition, since Protractor is built upon WebDriver, we need to ensure that it is installed and
-up-to-date. The `angular-seed` project is configured to do this automatically before running the
+up-to-date. The `personal-site` project is configured to do this automatically before running the
 end-to-end tests, so you don't need to worry about it. If you want to manually update the WebDriver,
 you can run:
 
@@ -205,7 +189,7 @@ respectively.
 
 ## Loading Angular Asynchronously
 
-The `angular-seed` project supports loading the framework and application scripts asynchronously.
+This project supports loading the framework and application scripts asynchronously.
 The special `index-async.html` is designed to support this style of loading. For it to work you must
 inject a piece of Angular JavaScript into the HTML page. The project has a predefined script to help
 do this:
@@ -226,57 +210,21 @@ web server during development to avoid issues with security restrictions (sandbo
 sandbox implementation varies between browsers, but quite often prevents things like cookies, XHR,
 etc to function properly when an HTML page is opened via the `file://` scheme instead of `http://`.
 
-### Running the App during Development
+### Running the App Locally
 
-The `angular-seed` project comes preconfigured with a local development web server. It is a Node.js
-tool called [http-server][http-server]. You can start this web server with `npm start`, but you may
-choose to install the tool globally:
-
-```
-sudo npm install -g http-server
-```
-
-Then you can start your own development web server to serve static files from a folder by running:
-
-```
-http-server -a localhost -p 8000
-```
+This project comes preconfigured with a local development web server. It is a Node.js
+tool called [http-server][http-server]. You can start this web server with `npm start`
 
 Alternatively, you can choose to configure your own web server, such as Apache or Nginx. Just
 configure your server to serve the files under the `app/` directory.
 
-### Running the App in Production
-
-This really depends on how complex your app is and the overall infrastructure of your system, but
-the general rule is that all you need in production are the files under the `app/` directory.
-Everything else should be omitted.
-
-Angular apps are really just a bunch of static HTML, CSS and JavaScript files that need to be hosted
-somewhere they can be accessed by browsers.
-
-If your Angular app is talking to the backend server via XHR or other means, you need to figure out
-what is the best way to host the static files to comply with the same origin policy if applicable.
-Usually this is done by hosting the files by the backend server or through reverse-proxying the
-backend server(s) and web server(s).
-
-
-## Continuous Integration
-
-### Travis CI
-
-[Travis CI][travis] is a continuous integration service, which can monitor GitHub for new commits to
-your repository and execute scripts such as building the app or running tests. The `angular-seed`
-project contains a Travis configuration file, `.travis.yml`, which will cause Travis to run your
-tests when you push to GitHub.
-
-You will need to enable the integration between Travis and GitHub. See the
-[Travis website][travis-docs] for instructions on how to do this.
-
-
 ## Contact
 
-For more information on AngularJS please check out [angularjs.org][angularjs].
+Feel free to contact me about this site or any of my work at
 
+## References
+
+For more information on AngularJS please check out [angularjs.org][angularjs].
 
 [angularjs]: https://angularjs.org/
 [bower]: http://bower.io/
