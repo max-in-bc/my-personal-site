@@ -1,8 +1,8 @@
 @import 'base';
 
-
-/* Basic Style */
-
+//*************************
+//***** SHARED STYLES *****
+//*************************
 body {
   text-align: center;
   font-family: 'Basic';
@@ -32,7 +32,6 @@ body {
 }
 
 /* Main Menu */
-
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -54,4 +53,21 @@ body {
 .menu > li + li:before {
   content: "|";
   padding-right: 0.3em;
+}
+
+//*************************
+//**** UNSHARED STYLES ****
+//*************************
+/* Summary Page */
+.summary-body{
+  margin: 2em 1em 1em 1em;
+}
+
+//*************************
+//***** Media Queries *****
+//*************************
+@media screen and (min-width: 666px){
+  .summary-body{
+    margin: 1em 7em 1em 7em;
+  }
 }
