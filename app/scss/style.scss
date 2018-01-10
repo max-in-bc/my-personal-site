@@ -1,21 +1,41 @@
 @import 'base';
 
-main {
-  max-width: $content-width;
-  margin: 0 auto;
-  color: $font-color;
-  display: flex;
-  h1 {
-    font-size: $header-size;
+
+/* Basic Style */
+
+body {
+  text-align: center;
+  font-family: 'Basic';
+}
+
+/* Header - Max Gardiner */
+.id-header{
+  font-family: 'Basic Bold';
+  border-bottom: 0.1em solid black;
+
+  h1,h2 {
+    margin-top: -10px;
+    margin-bottom: -10px;
+  }
+  h2{
+    font-size:1em;
+    letter-spacing: .46em;
+  }
+  h1{
+    font-size:2em;
+    letter-spacing: .2em;
+  }
+  #lastname{
+    letter-spacing: .165em;
+    padding: 0 0 0.5em;
   }
 }
 
-/* app css stylesheet */
+/* Main Menu */
 
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
   padding: 0 0 0.5em;
 }
 

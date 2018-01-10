@@ -3,3 +3,26 @@
 $header-size: 2em;
 $font-color: #343434;
 $content-width: 1200px;
+
+
+//Types
+
+@font-face {
+  font-family: "Basic";
+  src: url("fonts/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Basic Bold";
+  src: url("fonts/Lato-Black.ttf");
+}
+
+@font-face {
+  font-family: "Basic Italic";
+  src: url("fonts/Lato-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Basic Italic Bold";
+  src: url("fonts/Lato-BlackItalic.ttf");
+}
