@@ -11,7 +11,7 @@ To get you started you can simply clone this repository and install the dependen
 ```
 git clone https://github.com/maxgardiner/personal-site.git
 cd personal-site
-npm install
+yarn
 ```
 
 ### Run the Application
@@ -19,7 +19,7 @@ npm install
 The simplest way to start this server is:
 
 ```
-npm start
+yarn start
 ```
 
 Now browse to the app at [`localhost:8000/index.html`][local-app-url].
@@ -241,3 +241,8 @@ For more information on AngularJS please check out [angularjs.org][angularjs].
 [selenium]: http://docs.seleniumhq.org/
 [travis]: https://travis-ci.org/
 [travis-docs]: https://docs.travis-ci.com/user/getting-started
+
+## Updates
+
+* January 9, 2018: Added sass capabilities for easier prototyping
+* January 10, 2018: Setup yarn as package manager and config automated setup/running

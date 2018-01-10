@@ -23,7 +23,7 @@
     "@bower_components/html5-boilerplate" : "h5bp/html5-boilerplate#^5.3.0"
   },
   "scripts": {
-    "prestart": "sass --watch app/scss:app/css > /dev/null 2>&1 & yarn",
+    "prestart": "sass --watch app/scss:app/css & yarn",
     "start": "http-server -a localhost -p 8000 -c-1 ./app && pkill ruby && pkill fsevent_watch",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
