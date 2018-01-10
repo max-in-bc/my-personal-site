@@ -24,6 +24,11 @@ yarn start
 
 Now browse to the app at [`localhost:8000/index.html`][local-app-url].
 
+```
+ctrl + c to end the server and kill the scss watcher
+```
+
+
 ### Prerequisites
 
 This project was initially built on a barebones skelaton, called `angular-seed`.
