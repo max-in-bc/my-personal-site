@@ -143,4 +143,4 @@ For more information on AngularJS please check out [angularjs.org][angularjs].
 * January 12, 2018: Added short description
 * January 13, 2018: Styled main page
 * January 14, Made repo public
-* January 15, 2018: Fixed full resume
+* January 15, 2018: Fixed full resume - added background colour

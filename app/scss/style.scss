@@ -3,9 +3,10 @@
 //*************************
 //***** SHARED STYLES *****
 //*************************
-body {
+body,html {
   text-align: center;
   font-family: 'Basic';
+  background-color: $main-background-color;
 }
 
 /* Header - Max Gardiner */
