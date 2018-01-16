@@ -9,7 +9,7 @@ body {
 }
 
 /* Header - Max Gardiner */
-.id-header{
+.id-header, .resume-header{
   font-family: 'Basic Bold';
   border-bottom: 0.1em solid black;
 
@@ -29,6 +29,11 @@ body {
     letter-spacing: .165em;
     padding: 0 0 0.5em;
   }
+}
+.resume-header h2{
+  letter-spacing: inherit;
+  margin-top: 0px;
+  margin-bottom: -2px;;
 }
 
 /* Main Menu */
