@@ -95,11 +95,21 @@ app/                    --> all of the source files for the application
   app.js                --> main application module
   index.html            --> app layout file (the main html template file of the app)
   index-async.html      --> just like index.html, but loads js files asynchronously
+site-api/               --> simple NodeJS/Express server for serving simple requests used by my site
+  api/                    --> structure for api modules
+    controllers/            --> all controllers for node api modules
+      passwordController.js    --> controller for full resume password
+    models/                 --> all models for node api modules
+      passwordModel.js         --> models for full resume password
+    routes/                 --> all routes for node api modules
+      passwordRoutes.js        --> route info for full resume password
+  package.json            --> yarn/npm package manager file for API
+  server.js               --> the main nodejs server
 karma.conf.js         --> config file for running unit tests with Karma
 e2e-tests/            --> end-to-end tests
   protractor-conf.js    --> Protractor config file
   scenarios.js          --> end-to-end scenarios to be run by Protractor
-package.json          --> yarn/npm package manager file
+package.json          --> yarn/npm package manager file for site
 README.md             --> this file that you are reading
 ```
 
@@ -107,9 +117,15 @@ README.md             --> this file that you are reading
 ### Running the App Locally
 
 This project comes preconfigured with a local development web server. It is a Node.js
-tool called [http-server][http-server]. You can start this web server with `npm start` or `yarn start`
+tool called [http-server][http-server]. You can start this web server with `yarn start`
 
-Alternatively, you can choose to configure your own web server, such as Apache or Nginx. Just
+`yarn start` takes care of starting/stopping the following:
+- The web server (at localhost:8000)
+- The NodeJS API server (at localhost:3000)
+- The mongoDB server ued by the api (at localhost:12071)
+- The SASS watcher that converts SASS files to CSS on the fly while developing (localhost:8621)
+
+A development/production environment will be available eventually, currently this project is only under development. Alternatively, you can choose to configure your own web server, such as Apache or Nginx. Just
 configure your server to serve the files under the `app/` directory.
 
 ## Contact
