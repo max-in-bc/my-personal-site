@@ -9,7 +9,14 @@ angular.module('myApp.details', ['ngRoute'])
   });
 }])
 
-.controller('DetailsCtrl', ['$window', '$http', function($window, $http) {
+.controller('DetailsCtrl', ['$window', '$http', '$scope', function($window, $http, $scope) {
+  $scope.textLimit = 50;
+  function unhideText (html_this) {
+    console.log(html_this);
+
+    return 5;
+  };
+
   var isCorrectPassword = function (attempted_password, callback) {
     $http({
       url: 'http://localhost:3000/password',
@@ -20,7 +27,7 @@ angular.module('myApp.details', ['ngRoute'])
     }).error(function (data) {
       callback(-1);
     });
-  }
+  };
 
 // at the bottom of your controller
   var checkCode = function () {

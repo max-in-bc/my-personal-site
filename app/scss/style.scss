@@ -32,7 +32,7 @@ body,html {
   }
 }
 .resume-header h2{
-  letter-spacing: inherit;
+  letter-spacing: .46em;
   margin-top: 0px;
   margin-bottom: -2px;;
 }
@@ -75,8 +75,14 @@ body,html {
   margin-left: 1em;
   margin-right: 1em;
 }
-
+.id-header {
+  .summary-header{
+    letter-spacing: .02em;
+    margin-bottom: 10px;
+  }
+}
 /* DETAILS PAGE */
+
 
 .summary-body {
   span {
@@ -84,14 +90,15 @@ body,html {
     line-height: 16px;
     height: 10px;
     overflow: hidden;
+
+    .show {
+      overflow: visible;
+      height: auto;
+    }
   }
 
 }
 
-.show {
-  overflow: visible;
-  height: auto;
-}
 
 //*************************
 //***** Media Queries *****
