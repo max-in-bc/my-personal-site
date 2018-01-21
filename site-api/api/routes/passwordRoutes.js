@@ -4,5 +4,5 @@ module.exports = function(app) {
 
     // todoList Routes
     app.route('/password')
-    .get(passwordCtrl.check_passwords);
+        .get(passwordCtrl.check_passwords);
 };
