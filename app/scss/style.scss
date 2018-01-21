@@ -37,6 +37,10 @@ body,html {
   margin-bottom: -2px;;
 }
 
+.summary-body{
+  margin: 2em 1em 1em 1em;
+}
+
 /* Main Menu */
 .menu {
   list-style: none;
@@ -65,14 +69,28 @@ body,html {
 //**** UNSHARED STYLES ****
 //*************************
 /* Summary Page */
-.summary-body{
-  margin: 2em 1em 1em 1em;
-}
 
 .resume-body{
   text-align: justify;
   margin-left: 1em;
   margin-right: 1em;
+}
+
+/* DETAILS PAGE */
+
+.summary-body {
+  span {
+    font-size: 16px;
+    line-height: 16px;
+    height: 10px;
+    overflow: hidden;
+  }
+
+}
+
+.show {
+  overflow: visible;
+  height: auto;
 }
 
 //*************************
