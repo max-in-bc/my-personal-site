@@ -82,6 +82,32 @@ body,html {
   }
 }
 
+/* Details Page */
+.container {
+  font-size: 16px;
+  line-height: 16px;
+  height: 32px;
+  overflow: hidden;
+}
+.show {
+  overflow: visible;
+  height: auto;
+}
+
+.show-more-div {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: blue;
+
+  .show-more-button{
+    color: $button-font-color;
+    background-color: $button-bg-color;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+}
 
 //*************************
 //***** Media Queries *****

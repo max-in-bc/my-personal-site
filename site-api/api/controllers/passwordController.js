@@ -8,18 +8,21 @@ exports.check_passwords = function(req, res) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000'); //for dev only
 
     // //if there is an error
-    if ( req.query.attempted_password == null){
-        res.json({results: -1});
-    }
-    else{
-        //check for password
-        if (req.query.attempted_password === HARDCODED_PASSWORD){
-            res.json({results: 1});
-        }
-        else{
-            res.json({results: 0});
-        }
-    }
+    // if ( req.query.attempted_password == null){
+    //     res.json({results: -1});
+    // }
+    // else{
+    //     //check for password
+    //     if (req.query.attempted_password === HARDCODED_PASSWORD){
+    //         res.json({results: 1});
+    //     }
+    //     else{
+    //         res.json({results: 0});
+    //     }
+    // }
+
+
+    res.json({results: 1});
 };
 
 

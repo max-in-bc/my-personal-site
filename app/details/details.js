@@ -10,13 +10,15 @@ angular.module('myApp.details', ['ngRoute'])
 }])
 
 .controller('DetailsCtrl', ['$window', '$http', '$scope', function($window, $http, $scope) {
-  $scope.textLimit = 50;
-  function unhideText (html_this) {
-    console.log(html_this);
 
-    return 5;
-  };
+  //each section that is summarized can be controlled individually
+  var startSummarizerController = function(){
+     var nJobs = $window.document.getElementsByClassName("listing").length;
 
+     $scope.showDetails = Array.apply(null, Array(nJobs)).map(function() { return false });
+  }
+
+  //call api to check if code for resume is correct
   var isCorrectPassword = function (attempted_password, callback) {
     $http({
       url: 'http://localhost:3000/password',
@@ -44,6 +46,9 @@ angular.module('myApp.details', ['ngRoute'])
     });
 
   };
-// and fire it after definition
+  // and fire it after definition
   checkCode();
+
+  //"show more/less" button controller
+  startSummarizerController();
 }]);
