@@ -20,9 +20,6 @@ exports.check_passwords = function(req, res) {
             res.json({results: 0});
         }
     }
-
-
-    res.json({results: 1});
 };
 
 
