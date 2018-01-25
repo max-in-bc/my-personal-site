@@ -21,7 +21,7 @@ angular.module('myApp.details', ['ngRoute'])
   //call api to check if code for resume is correct
   var isCorrectPassword = function (attempted_password, callback) {
     $http({
-      url: 'http://localhost:3000/password',
+      url: 'http://0.0.0.0:3000/password',
       method: "GET",
       params: {attempted_password: attempted_password}
     }).success(function (data) {
