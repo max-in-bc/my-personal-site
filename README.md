@@ -162,3 +162,4 @@ For more information on AngularJS please check out [angularjs.org][angularjs].
 * January 15, 2018: Fixed full resume - added background colour
 * January 17, 2018: Added node/express/mongodb server to run locally and test full resume password - also added password to full resume. NOTE: Must setup mongodb rn it is plaintext inside node server
 * January 20, 2018: Fixed api server for password to be hardcoded for time being
+* January 25, 2018: Setting up prod env on Amazon EC2
