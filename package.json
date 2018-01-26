@@ -19,6 +19,7 @@
   "scripts": {
     "prestart": "sass --watch app/scss:app/css & yarn",
     "start": "http-server -a 0.0.0.0 -p 8081 -c-1 ./app && pkill ruby && pkill fsevent_watch",
+    "production": "http-server -a 0.0.0.0 -p 8081 -c-1 ./app",
     "postinstall" : "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'app/bower_components', 'junction') } catch (e) { }\""
   },
   "engines" : {
