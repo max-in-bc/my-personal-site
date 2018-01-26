@@ -7,8 +7,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var routes = require('./api/routes/passwordRoutes'); //importing route
-routes(app); //register the route
+var passwordRoutes = require('./api/routes/passwordRoutes'); //importing route
+passwordRoutes(app); //register the route
+var resumeRoutes = require('./api/routes/resumeRoutes'); //importing route
+resumeRoutes(app); //register the route
 
 
 app.listen(port);

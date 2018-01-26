@@ -11,6 +11,19 @@ angular.module('myApp.details', ['ngRoute'])
 
 .controller('DetailsCtrl', ['$window', '$http', '$scope', function($window, $http, $scope) {
 
+  //call api to check if code for resume is correct
+  var getFullResume = function (callback) {
+    $http({
+      url: 'http://localhost:3000/fullresume',
+      method: "GET",
+    }).success(function (data) {
+      callback( data.results );
+    }).error(function (data) {
+      callback(-1);
+    });
+  };
+
+
   //each section that is summarized can be controlled individually
   var startSummarizerController = function(){
      var nJobs = $window.document.getElementsByClassName("listing").length;
@@ -21,7 +34,7 @@ angular.module('myApp.details', ['ngRoute'])
   //call api to check if code for resume is correct
   var isCorrectPassword = function (attempted_password, callback) {
     $http({
-      url: 'http://18.216.135.73:3000/password',
+      url: 'http://0.0.0.0:3000/password',
       method: "GET",
       params: {attempted_password: attempted_password}
     }).success(function (data) {
@@ -46,9 +59,50 @@ angular.module('myApp.details', ['ngRoute'])
     });
 
   };
-  // and fire it after definition
+  //and fire it after definition
   checkCode();
 
-  //"show more/less" button controller
-  startSummarizerController();
+  //get the resume from the server as well
+  getFullResume(function(resume){
+    $scope.fullResume = resume;
+
+    //TODO: make model for resume
+    var lines = resume.split('\n');
+
+    var summaries = [], stacks = [], titles = [], names = [], sections = [];
+
+    for (var line in lines){
+      //job summary
+      if (lines[line].indexOf("*****") > -1){
+        summaries.push(lines[line].replace("*****",""));
+      }
+
+      //program stack
+      else if (lines[line].indexOf("****") > -1){
+        stacks.push(lines[line].replace("****",""));
+      }
+
+      //job title
+      else if (lines[line].indexOf("***") > -1){
+        titles.push(lines[line].replace("***",""));
+      }
+
+      //company name
+      else if (lines[line].indexOf("**") > -1){
+        names.push(lines[line].replace("**",""));
+      }
+
+      //new section
+      else if (lines[line].indexOf("*") > -1){
+        sections.push(lines[line].replace("*",""));
+      }
+      else{
+        console.log(lines[line]);
+      }
+    }
+
+    //"show more/less" button controller
+    startSummarizerController();
+  });
+
 }]);
