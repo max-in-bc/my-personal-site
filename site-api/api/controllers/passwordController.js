@@ -1,17 +1,17 @@
 'use strict';
 const HARDCODED_PASSWORD = process.env.RESUME_PASSWORD || 'ANYPASSWORD';
-const ENVIRONMENT = process.env.ENV_TYPE || 'dev';
 
 //Checks given request against the password for the full resume
 exports.check_passwords = function(req, res) {
 
-    if (ENVIRONMENT == 'prod'){
-        // Website you wish to allow to connect
-        res.setHeader('Access-Control-Allow-Origin', 'http://18.216.135.73:80'); //for prod http only
-        res.setHeader('Access-Control-Allow-Origin', 'http://18.216.135.73:443'); //for prod https only
+    var allowedOrigins = ['http://0.0.0.0:8081', 'http://localhost:8081', 'http://0.0.0.0','http://localhost',
+        'http://maxgardiner.ca', 'https://maxgardiner.ca', 'http://torontoweb.ninja','https://torontoweb.ninja'];
+    var origin = req.headers.origin;
+    if(allowedOrigins.indexOf(origin) > -1){
+        res.setHeader('Access-Control-Allow-Origin', origin);
     }
     else{
-        res.setHeader('Access-Control-Allow-Origin', 'http://18.216.135.73:8081'); //for dev only
+        res.setHeader('Access-Control-Allow-Origin', "http://0.0.0.0");
     }
 
     //if there is an error
