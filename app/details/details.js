@@ -14,7 +14,7 @@ angular.module('myApp.details', ['ngRoute'])
   //call api to check if code for resume is correct
   var getFullResume = function (callback) {
     $http({
-      url: 'http://localhost:3000/fullresume',
+      url: 'http://18.216.135.73:3000/fullresume',
       method: "GET",
     }).success(function (data) {
       callback( data.results );
@@ -34,7 +34,7 @@ angular.module('myApp.details', ['ngRoute'])
   //call api to check if code for resume is correct
   var isCorrectPassword = function (attempted_password, callback) {
     $http({
-      url: 'http://0.0.0.0:3000/password',
+      url: 'http://18.216.135.73:3000/password',
       method: "GET",
       params: {attempted_password: attempted_password}
     }).success(function (data) {
@@ -62,47 +62,47 @@ angular.module('myApp.details', ['ngRoute'])
   //and fire it after definition
   checkCode();
 
-  //get the resume from the server as well
-  getFullResume(function(resume){
-    $scope.fullResume = resume;
-
-    //TODO: make model for resume
-    var lines = resume.split('\n');
-
-    var summaries = [], stacks = [], titles = [], names = [], sections = [];
-
-    for (var line in lines){
-      //job summary
-      if (lines[line].indexOf("*****") > -1){
-        summaries.push(lines[line].replace("*****",""));
-      }
-
-      //program stack
-      else if (lines[line].indexOf("****") > -1){
-        stacks.push(lines[line].replace("****",""));
-      }
-
-      //job title
-      else if (lines[line].indexOf("***") > -1){
-        titles.push(lines[line].replace("***",""));
-      }
-
-      //company name
-      else if (lines[line].indexOf("**") > -1){
-        names.push(lines[line].replace("**",""));
-      }
-
-      //new section
-      else if (lines[line].indexOf("*") > -1){
-        sections.push(lines[line].replace("*",""));
-      }
-      else{
-        console.log(lines[line]);
-      }
-    }
+  // //get the resume from the server as well
+  // getFullResume(function(resume){
+  //   $scope.fullResume = resume;
+  //
+  //   //TODO: make model for resume
+  //   var lines = resume.split('\n');
+  //
+  //   var summaries = [], stacks = [], titles = [], names = [], sections = [];
+  //
+  //   for (var line in lines){
+  //     //job summary
+  //     if (lines[line].indexOf("*****") > -1){
+  //       summaries.push(lines[line].replace("*****",""));
+  //     }
+  //
+  //     //program stack
+  //     else if (lines[line].indexOf("****") > -1){
+  //       stacks.push(lines[line].replace("****",""));
+  //     }
+  //
+  //     //job title
+  //     else if (lines[line].indexOf("***") > -1){
+  //       titles.push(lines[line].replace("***",""));
+  //     }
+  //
+  //     //company name
+  //     else if (lines[line].indexOf("**") > -1){
+  //       names.push(lines[line].replace("**",""));
+  //     }
+  //
+  //     //new section
+  //     else if (lines[line].indexOf("*") > -1){
+  //       sections.push(lines[line].replace("*",""));
+  //     }
+  //     else{
+  //       console.log(lines[line]);
+  //     }
+  //   }
 
     //"show more/less" button controller
     startSummarizerController();
-  });
+  // });
 
 }]);
