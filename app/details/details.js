@@ -9,12 +9,12 @@ angular.module('myApp.details', ['ngRoute'])
   });
 }])
 
-.controller('DetailsCtrl', ['$window', '$http', '$scope', function($window, $http, $scope) {
+.controller('DetailsCtrl', ['$window', '$http', '$scope', 'ResumeService', function($window, $http, $scope, ResumeService) {
 
   //call api to check if code for resume is correct
   var getFullResume = function (callback) {
     $http({
-      url: 'http://18.216.135.73:3000/fullresume',
+      url: 'http://0.0.0.0:3000/fullresume',
       method: "GET",
     }).success(function (data) {
       callback( data.results );
@@ -34,7 +34,7 @@ angular.module('myApp.details', ['ngRoute'])
   //call api to check if code for resume is correct
   var isCorrectPassword = function (attempted_password, callback) {
     $http({
-      url: 'http://18.216.135.73:3000/password',
+      url: 'http://0.0.0.0:3000/password',
       method: "GET",
       params: {attempted_password: attempted_password}
     }).success(function (data) {
@@ -45,7 +45,7 @@ angular.module('myApp.details', ['ngRoute'])
   };
 
 // at the bottom of your controller
-  var checkCode = function () {
+  var checkCode = function (callback) {
     var passcode = prompt("Please enter a passcode to view", "ie. abc123");
     if (passcode == null || passcode == '') {
       $window.location.href = '/#/summary';
@@ -53,56 +53,28 @@ angular.module('myApp.details', ['ngRoute'])
     isCorrectPassword(passcode.trim(), function(results){
       if (results === true){
         $window.location.href = '/#/details';
+        callback(true);
       }else{
         $window.location.href = '/#/summary';
+        callback(false);
       }
     });
 
   };
   //and fire it after definition
-  checkCode();
+  checkCode(function(correctPassword){
+    if (correctPassword){
+        //get full resume
+        getFullResume(function(fullResume){
+            $scope.resume  = ResumeService.markup(fullResume);
+            console.log($scope.resume);
+        });
 
-  // //get the resume from the server as well
-  // getFullResume(function(resume){
-  //   $scope.fullResume = resume;
-  //
-  //   //TODO: make model for resume
-  //   var lines = resume.split('\n');
-  //
-  //   var summaries = [], stacks = [], titles = [], names = [], sections = [];
-  //
-  //   for (var line in lines){
-  //     //job summary
-  //     if (lines[line].indexOf("*****") > -1){
-  //       summaries.push(lines[line].replace("*****",""));
-  //     }
-  //
-  //     //program stack
-  //     else if (lines[line].indexOf("****") > -1){
-  //       stacks.push(lines[line].replace("****",""));
-  //     }
-  //
-  //     //job title
-  //     else if (lines[line].indexOf("***") > -1){
-  //       titles.push(lines[line].replace("***",""));
-  //     }
-  //
-  //     //company name
-  //     else if (lines[line].indexOf("**") > -1){
-  //       names.push(lines[line].replace("**",""));
-  //     }
-  //
-  //     //new section
-  //     else if (lines[line].indexOf("*") > -1){
-  //       sections.push(lines[line].replace("*",""));
-  //     }
-  //     else{
-  //       console.log(lines[line]);
-  //     }
-  //   }
+      //"show more/less" button controller
+      startSummarizerController();
+    }
+  });
 
-    //"show more/less" button controller
-    startSummarizerController();
-  // });
+
 
 }]);

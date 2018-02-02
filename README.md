@@ -151,3 +151,4 @@ For more information on AngularJS please check out [angularjs.org][angularjs].
 * January 20, 2018: Fixed api server for password to be hardcoded for time being
 * January 25, 2018: Setting up prod env on Amazon EC2
 * January 26, 2018: Purchased domains, setup DNS routing with Amazon Route 53, update code for initial production env
+* February 1, 2018: Made the full resume accessible through API call, so as to hide it in sourcecode

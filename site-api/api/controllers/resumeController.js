@@ -15,7 +15,7 @@ exports.get_full_resume = function(req, res) {
 
     var fs = require('fs');
 
-    fs.readFile('../full-resume.txt', 'utf8', function(err, data) {
+    fs.readFile('./full-resume.txt', 'utf8', function(err, data) {
         if (err) {
             res.json({results: -1});
         }
