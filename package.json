@@ -17,7 +17,7 @@
   "scripts": {
     "prestart": "sass --watch app/assets/scss:app/assets/css & yarn",
     "start": "http-server -a 0.0.0.0 -p 8081 -c-1 ./app && pkill ruby && pkill fsevent_watch",
-    "production": "http-server -a 0.0.0.0 -p 8081 -c-1 ./app",
+    "production": "pkill ruby && pkill fsevent_watch && http-server -a 0.0.0.0 -p 80 -c-1 ./app",
     "postinstall" : "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@assets/bower_components'), 'app/assets/bower_components', 'junction') } catch (e) { }\""
   },
   "engines" : {

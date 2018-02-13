@@ -11,8 +11,8 @@ var app = angular.module('myApp', [
   $routeProvider.otherwise({redirectTo: '/summary'});
 }]);
 
-app.constant('WorkingURL', 'http://0.0.0.0');
-// app.constant('WorkingURL', 'http://maxgardiner.ca');
+// app.constant('WorkingURL', 'http://0.0.0.0');
+app.constant('WorkingURL', 'http://maxgardiner.ca');
 
 app.service('ResumeService', function(){
     /**
