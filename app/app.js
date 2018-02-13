@@ -18,11 +18,49 @@ app.service('ResumeService', function(){
     /**
      * Constructor, with class name
      */
-    this.markup = function(resumeText) {
+    this.markup = function(resumeText, anonymized) {
 
         var resumeSplit = resumeText.split('\n');
 
         var resume = {};
+
+        resume['full_name'] = {};
+        resume['contact'] = {};
+        if (anonymized){
+            resume['full_name']['first_name'] = "Maxwell";
+            resume['full_name']['middle_name'] = "TO Web";
+            resume['full_name']['last_name'] = "Ninja";
+            resume['contact']['email'] = 'max@torontoweb.ninja';
+        }
+        else{
+
+            resume['full_name']['first_name'] = resumeSplit[0];
+
+            if (resumeSplit[2].length == 0){
+                //no middle name
+                resume['full_name']['middle_name'] = "";
+                resume['full_name']['last_name'] = resumeSplit[1];
+
+                resume['contact']['email'] = resumeSplit[2];
+                resume['contact']['phone'] = resumeSplit[3];
+            }
+            else{
+                resume['full_name']['middle_name'] = resumeSplit[1];
+                resume['full_name']['last_name'] = resumeSplit[2];
+                resume['contact']['email'] = resumeSplit[3];
+                resume['contact']['phone'] = resumeSplit[4];
+
+                resumeSplit[4] = "";
+            }
+
+            resumeSplit[0] = "";
+            resumeSplit[1] = "";
+            resumeSplit[2] = "";
+            resumeSplit[3] = "";
+
+
+        }
+
         var curSection = "";
 
         var lastStar = 0, counter = 0;
@@ -54,7 +92,7 @@ app.service('ResumeService', function(){
                 lastStar = 3;
             }
             else if  (curLine.substring(0, 2) == "*".repeat(2)){
-                if (lastStar == 1){
+                if (lastStar == 1 || lastStar == 5){
                     resume[curSection][counter]["place"] = curLine.substring(2);
                 }
                 else if (lastStar == 2){

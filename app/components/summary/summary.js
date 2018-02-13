@@ -9,6 +9,7 @@ angular.module('myApp.summary', ['ngRoute'])
   });
 }])
 
-.controller('SummaryCtrl', [function() {
+.controller('SummaryCtrl', ['$scope', function($scope) {
+    $scope.anonymized = location.host == 'torontoweb.ninja' ? true : false;
 
 }]);

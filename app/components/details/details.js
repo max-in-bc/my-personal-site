@@ -11,10 +11,13 @@ angular.module('myApp.details', ['ngRoute'])
 
 .controller('DetailsCtrl', ['$window', '$http', '$scope', 'ResumeService', 'WorkingURL', function($window, $http, $scope, ResumeService, WorkingURL) {
 
+    $scope.anonymized = location.host == 'torontoweb.ninja' ? true : false;
+
   //call api to check if code for resume is correct
   var getFullResume = function (callback) {
     $http({
-      url: WorkingURL + ':3000/fullresume', //'http://maxgardiner.ca:3000/fullresume',
+      url: WorkingURL + ':3000/fullresume',
+      params: {anon: $scope.anonymized},
       method: "GET",
     }).success(function (data) {
       callback( data.results );
@@ -63,6 +66,7 @@ angular.module('myApp.details', ['ngRoute'])
     var passcode = prompt("Please enter a passcode to view", "ie. abc123");
     if (passcode == null || passcode == '') {
       $window.location.href = '/#/summary';
+      return;
     }
     isCorrectPassword(passcode.trim(), function(results){
       if (results === true){
@@ -81,7 +85,7 @@ angular.module('myApp.details', ['ngRoute'])
         //get full resume
         getFullResume(function(fullResume){
 
-            $scope.resume  = ResumeService.markup(fullResume);
+            $scope.resume  = ResumeService.markup(fullResume, $scope.anonymized);
 
             //"show more/less" button controller
             startSummarizerController();

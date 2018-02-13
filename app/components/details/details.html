@@ -1,11 +1,23 @@
 <div class="details-page">
     <div class="resume-header">
         <div class="id-header">
-            <h1 id="firstname">Maxwell</h1>
-            <h2 id="middlename">Robert John</h2>
-            <h1 id="lastname">Gardiner</h1>
+            <h1 id="firstname">{{ resume.full_name.first_name}}</h1>
+            <h2 id="middlename">{{ resume.full_name.middle_name}}</h2>
+            <h1 id="lastname">{{ resume.full_name.last_name}}</h1>
         </div>
-        </br>
+
+
+        <div ng-if="anonymized" class=="contact-box">
+            <div class="contact-box-header anon">
+                <span class="email" >{{ resume.contact.email}}</span>
+            </div>
+        </div>
+        <div ng-if="!anonymized" class="contact-box">
+            <div class="contact-box-header">
+                <span class="email" >{{ resume.contact.email}}</span>
+                <span class="phonenumber">{{ resume.contact.phone}}</span>
+            </div>
+        </div>
     </div>
 
 
@@ -17,12 +29,12 @@
             <div ng-repeat="x in resume.work_experience">
 
                 <div class="listing">
-                    <p class="company-header">{{ x.place }}</p>
-                    <p class="position-header">{{ x.title }}</p>
-                    <p class="stack-header">{{ x.stack }}</p>
+                    <p class="company listing-header">{{ x.place }}</p>
+                    <p class="position listing-header">{{ x.title }}</p>
+                    <p class="stack listing-header">{{ x.stack }}</p>
                     <p class="summary-body container" ng-class="{show: showDetails['work_experience'][$index]}">{{ x.description }}</p>
                     <div class="show-more-div">
-                        <button class="show-more-button" ng-click="showDetails['work_experience'][$index] = !showDetails['work_experience'][$index]"/>
+                        <button class="show-more-button" ng-click="showDetails['work_experience'][$index] = !showDetails['work_experience'][$index]">{{!showDetails['work_experience'][$index] ? 'more' : 'less'}}</button>
                     </div>
                 </div>
             </div>
@@ -34,12 +46,12 @@
             <div ng-repeat="x in resume.volunteer_experience">
 
                 <div class="listing">
-                    <p class="company-header">{{ x.place }}</p>
-                    <p class="position-header">{{ x.title }}</p>
-                    <p class="stack-header">{{ x.stack }}</p>
+                    <p class="company listing-header">{{ x.place }}</p>
+                    <p class="position listing-header">{{ x.title }}</p>
+                    <p class="stack listing-header">{{ x.stack }}</p>
                     <p class="summary-body container" ng-class="{show: showDetails['volunteer_experience'][$index]}">{{ x.description }}</p>
                     <div class="show-more-div">
-                        <button class="show-more-button" ng-click="showDetails['volunteer_experience'][$index] = !showDetails['volunteer_experience'][$index]"/>
+                        <button class="show-more-button" ng-click="showDetails['volunteer_experience'][$index] = !showDetails['volunteer_experience'][$index]">{{!showDetails['volunteer_experience'][$index] ? 'more' : 'less'}}</button>
                     </div>
                 </div>
             </div>
@@ -51,12 +63,12 @@
             <div ng-repeat="x in resume.education_experience">
 
                 <div class="listing">
-                    <p class="company-header">{{ x.place }}</p>
-                    <p class="position-header">{{ x.title }}</p>
-                    <p class="stack-header">{{ x.stack }}</p>
+                    <p class="company listing-header">{{ x.place }}</p>
+                    <p class="listing-header position">{{ x.title }}</p>
+                    <p class="listing-header stack">{{ x.stack }}</p>
                     <p class="summary-body container" ng-class="{show: showDetails['education_experience'][$index]}">{{ x.description }}</p>
                     <div class="show-more-div">
-                        <button class="show-more-button" ng-click="showDetails['education_experience'][$index] = !showDetails['education_experience'][$index]"/>
+                        <button class="show-more-button" ng-click="showDetails['education_experience'][$index] = !showDetails['education_experience'][$index]">{{!showDetails['education_experience'][$index] ? 'more' : 'less'}}</button>
                     </div>
                 </div>
             </div>
