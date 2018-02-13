@@ -12,7 +12,7 @@ var app = angular.module('myApp', [
 }]);
 
 // app.constant('WorkingURL', 'http://0.0.0.0');
-app.constant('WorkingURL', 'http://maxgardiner.ca');
+app.constant('WorkingURL', 'http://' + location.host);
 
 app.service('ResumeService', function(){
     /**
