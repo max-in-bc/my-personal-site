@@ -7,8 +7,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var passwordRoutes = require('./api/routes/passwordRoutes'); //importing route
-passwordRoutes(app); //register the route
 var resumeRoutes = require('./api/routes/resumeRoutes'); //importing route
 resumeRoutes(app); //register the route
 

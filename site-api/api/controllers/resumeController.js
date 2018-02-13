@@ -1,4 +1,5 @@
 'use strict';
+var HARDCODED_PASSWORD = process.env.RESUME_PASSWORD || 'ANYPASSWORD';
 
 //Checks given request against the password for the full resume
 exports.get_full_resume = function(req, res) {
@@ -13,17 +14,40 @@ exports.get_full_resume = function(req, res) {
         res.setHeader('Access-Control-Allow-Origin', "http://0.0.0.0");
     }
 
+
     var fs = require('fs');
 
-    fs.readFile('./full-resume.txt', 'utf8', function(err, data) {
-        if (err) {
-            res.json({results: -1,
-                      error: err});
+    //if there is an error return it
+    if ( req.query.attempted_password == null){
+        res.json({results: -1});
+    }
+
+    //otherwise check for password
+    else{
+
+        //if password is correct
+        if (req.query.attempted_password === HARDCODED_PASSWORD){
+
+            //send unencrypted resume
+            fs.readFile('./full-resume.txt', 'utf8', function(err, data) {
+                if (err) {
+                    res.json({results: -1,
+                        error: err});
+                }
+                else{
+                    res.json({results: 1,
+                              data: data});
+                }
+            });
         }
+
+        //incorrect password
         else{
-            res.json({results: data});
+            res.json({results: 0});
         }
-    });
+    }
+
+
 
 
 };

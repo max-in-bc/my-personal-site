@@ -11,8 +11,8 @@ var app = angular.module('myApp', [
   $routeProvider.otherwise({redirectTo: '/summary'});
 }]);
 
-// app.constant('WorkingURL', 'http://0.0.0.0');
-app.constant('WorkingURL', 'http://' + location.host);
+app.constant('WorkingURL', 'http://0.0.0.0');
+// app.constant('WorkingURL', 'http://' + location.host.indexOf(":") > -1 ? location.host.slice(0, location.host.indexOf(":")) : location.host);
 
 app.service('ResumeService', function(){
     /**

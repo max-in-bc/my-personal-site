@@ -51,46 +51,47 @@ angular.module('myApp.details', ['ngRoute'])
   //call api to check if code for resume is correct
   var isCorrectPassword = function (attempted_password, callback) {
     $http({
-      url: WorkingURL + ':3000/password',
+      url: WorkingURL + ':3000/fullresume',
       method: "GET",
-      params: {attempted_password: attempted_password}
-    }).success(function (data) {
-      callback( data.results === 1 );
+      params: {attempted_password: attempted_password,
+               anon: $scope.anonymized}
+    }).success(function (resumeRequest) {
+      if( resumeRequest.results === 1 ){
+          callback({result: true, data: resumeRequest.data});
+      }
+      else{
+          callback({result: false, data: null});
+      }
     }).error(function (data) {
-      callback(-1);
+      callback({result: false, data: null});
     });
   };
 
 // at the bottom of your controller
-  var checkCode = function (callback) {
+  var checkCodeAndGetResume = function (callback) {
     var passcode = prompt("Please enter a passcode to view", "ie. abc123");
     if (passcode == null || passcode == '') {
       $window.location.href = '/#/summary';
       return;
     }
-    isCorrectPassword(passcode.trim(), function(results){
-      if (results === true){
+    isCorrectPassword(passcode.trim(), function(checkCode){
+      if (checkCode.result === true){
         $window.location.href = '/#/details';
-        callback(true);
+        callback(checkCode.result, checkCode.data);
       }else{
         $window.location.href = '/#/summary';
-        callback(false);
+        callback(checkCode.result, null);
       }
     });
 
   };
   //and fire it after definition
-  checkCode(function(correctPassword){
+  checkCodeAndGetResume(function(correctPassword, fullResume){
     if (correctPassword){
-        //get full resume
-        getFullResume(function(fullResume){
+        $scope.resume  = ResumeService.markup(fullResume, $scope.anonymized);
 
-            $scope.resume  = ResumeService.markup(fullResume, $scope.anonymized);
-
-            //"show more/less" button controller
-            startSummarizerController();
-        });
-
+        //"show more/less" button controller
+        startSummarizerController();
     }
   });
 
