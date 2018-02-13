@@ -20,9 +20,9 @@
                     <p class="company-header">{{ x.place }}</p>
                     <p class="position-header">{{ x.title }}</p>
                     <p class="stack-header">{{ x.stack }}</p>
-                    <p class="summary-body container" ng-class="{show: showDetails[0]}">{{ x.description }}</p>
+                    <p class="summary-body container" ng-class="{show: showDetails['work_experience'][$index]}">{{ x.description }}</p>
                     <div class="show-more-div">
-                        <button class="show-more-button" ng-click="showDetails[0] = !showDetails[0]"/>
+                        <button class="show-more-button" ng-click="showDetails['work_experience'][$index] = !showDetails['work_experience'][$index]"/>
                     </div>
                 </div>
             </div>
@@ -37,9 +37,9 @@
                     <p class="company-header">{{ x.place }}</p>
                     <p class="position-header">{{ x.title }}</p>
                     <p class="stack-header">{{ x.stack }}</p>
-                    <p class="summary-body container" ng-class="{show: showDetails[0]}">{{ x.description }}</p>
+                    <p class="summary-body container" ng-class="{show: showDetails['volunteer_experience'][$index]}">{{ x.description }}</p>
                     <div class="show-more-div">
-                        <button class="show-more-button" ng-click="showDetails[0] = !showDetails[0]"/>
+                        <button class="show-more-button" ng-click="showDetails['volunteer_experience'][$index] = !showDetails['volunteer_experience'][$index]"/>
                     </div>
                 </div>
             </div>
@@ -48,15 +48,15 @@
         <div class="education-experience">
 
             <h1 class="section-header">Education</h1>
-            <div ng-repeat="x in resume.volunteer_experience">
+            <div ng-repeat="x in resume.education_experience">
 
                 <div class="listing">
                     <p class="company-header">{{ x.place }}</p>
                     <p class="position-header">{{ x.title }}</p>
                     <p class="stack-header">{{ x.stack }}</p>
-                    <p class="summary-body container" ng-class="{show: showDetails[0]}">{{ x.description }}</p>
+                    <p class="summary-body container" ng-class="{show: showDetails['education_experience'][$index]}">{{ x.description }}</p>
                     <div class="show-more-div">
-                        <button class="show-more-button" ng-click="showDetails[0] = !showDetails[0]"/>
+                        <button class="show-more-button" ng-click="showDetails['education_experience'][$index] = !showDetails['education_experience'][$index]"/>
                     </div>
                 </div>
             </div>

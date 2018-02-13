@@ -4,7 +4,7 @@ angular.module('myApp.summary', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/summary', {
-    templateUrl: 'summary/summary.html',
+    templateUrl: 'components/summary/summary.html',
     controller: 'SummaryCtrl'
   });
 }])

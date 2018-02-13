@@ -11,6 +11,9 @@ var app = angular.module('myApp', [
   $routeProvider.otherwise({redirectTo: '/summary'});
 }]);
 
+app.constant('WorkingURL', 'http://0.0.0.0');
+// app.constant('WorkingURL', 'http://maxgardiner.ca');
+
 app.service('ResumeService', function(){
     /**
      * Constructor, with class name
@@ -26,17 +29,21 @@ app.service('ResumeService', function(){
         for (var i = 0; i < resumeSplit.length; i++){
             var curLine = resumeSplit[i];
 
-            if (curLine.substring(0, 5) == "*****"){
+            if (curLine.length == 0){
+                continue;
+            }
+
+            else if (curLine.substring(0, 5) == "*".repeat(5)){
                 resume[curSection][counter++]["description"] = curLine.substring(5);
                 resume[curSection][counter] = {};
                 lastStar = 5;
             }
-            else if  (curLine.substring(0, 4) == "****"){
+            else if  (curLine.substring(0, 4) == "*".repeat(4)){
                 resume[curSection][counter]["stack"] = curLine.substring(4);
                 lastStar = 4;
 
             }
-            else if  (curLine.substring(0, 3) == "***"){
+            else if  (curLine.substring(0, 3) == "*".repeat(3)){
                 if (lastStar == 2){
                     resume[curSection][counter]["title"] = curLine.substring(3);
                 }
@@ -46,7 +53,7 @@ app.service('ResumeService', function(){
 
                 lastStar = 3;
             }
-            else if  (curLine.substring(0, 2) == "**"){
+            else if  (curLine.substring(0, 2) == "*".repeat(2)){
                 if (lastStar == 1){
                     resume[curSection][counter]["place"] = curLine.substring(2);
                 }
@@ -57,6 +64,10 @@ app.service('ResumeService', function(){
                 lastStar = 2;
             }
             else if  (curLine[0] == "*"){
+                if (lastStar == 5 && Object.keys(resume[curSection][counter]).length === 0 && resume[curSection][counter].constructor === Object){
+                    delete resume[curSection][counter];
+                }
+
                 lastStar = 1;
 
                 if (curLine.indexOf("Work Experience") !== -1){
@@ -75,6 +86,13 @@ app.service('ResumeService', function(){
 
             }
         }
+
+        //Check the last line of the unedited resume for blank
+        if (Object.keys(resume[curSection][counter]).length === 0 && resume[curSection][counter].constructor === Object){
+            delete resume[curSection][counter];
+        }
+
+
         return resume;
     }
 });

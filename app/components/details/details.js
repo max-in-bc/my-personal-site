@@ -4,17 +4,17 @@ angular.module('myApp.details', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/details', {
-    templateUrl: 'details/details.html',
+    templateUrl: 'components/details/details.html',
     controller: 'DetailsCtrl'
   });
 }])
 
-.controller('DetailsCtrl', ['$window', '$http', '$scope', 'ResumeService', function($window, $http, $scope, ResumeService) {
+.controller('DetailsCtrl', ['$window', '$http', '$scope', 'ResumeService', 'WorkingURL', function($window, $http, $scope, ResumeService, WorkingURL) {
 
   //call api to check if code for resume is correct
   var getFullResume = function (callback) {
     $http({
-      url: 'http://maxgardiner.ca:3000/fullresume',
+      url: WorkingURL + ':3000/fullresume', //'http://maxgardiner.ca:3000/fullresume',
       method: "GET",
     }).success(function (data) {
       callback( data.results );
@@ -26,15 +26,29 @@ angular.module('myApp.details', ['ngRoute'])
 
   //each section that is summarized can be controlled individually
   var startSummarizerController = function(){
-     var nJobs = $window.document.getElementsByClassName("listing").length;
+     var nJobs = {
+         'work_experience': 0,
+         'volunteer_experience': 0,
+         'education_experience': 0
+     };
 
-     $scope.showDetails = Array.apply(null, Array(nJobs)).map(function() { return false });
+      nJobs['work_experience'] = Object.keys($scope.resume['work_experience']).length;
+      nJobs['volunteer_experience'] = Object.keys($scope.resume['volunteer_experience']).length;
+      nJobs['education_experience'] = Object.keys($scope.resume['education_experience']).length;
+
+
+      $scope.showDetails = {
+          'work_experience': Array.apply(null, Array(nJobs['work_experience'])).map(function() { return false }),
+          'volunteer_experience': Array.apply(null, Array(nJobs['volunteer_experience'])).map(function() { return false }),
+          'education_experience': Array.apply(null, Array(nJobs['education_experience'])).map(function() { return false })
+      }
+
   }
 
   //call api to check if code for resume is correct
   var isCorrectPassword = function (attempted_password, callback) {
     $http({
-      url: 'http://maxgardiner.ca:3000/password',
+      url: WorkingURL + ':3000/password',
       method: "GET",
       params: {attempted_password: attempted_password}
     }).success(function (data) {
@@ -66,12 +80,13 @@ angular.module('myApp.details', ['ngRoute'])
     if (correctPassword){
         //get full resume
         getFullResume(function(fullResume){
+
             $scope.resume  = ResumeService.markup(fullResume);
-            console.log($scope.resume);
+
+            //"show more/less" button controller
+            startSummarizerController();
         });
 
-      //"show more/less" button controller
-      startSummarizerController();
     }
   });
 
