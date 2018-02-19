@@ -5,14 +5,21 @@ var app = angular.module('myApp', [
     'ngRoute',
     'myApp.summary',
     'myApp.details'
-])
+]);
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/summary'});
-}]);
+
 
 // app.constant('WorkingURL', 'http://0.0.0.0');
 app.constant('WorkingURL', 'http://' + location.host);
+
+app.config(['$routeProvider', function($routeProvider) {
+
+    if (location.host == "maxgardiner.ca"){
+        $routeProvider.otherwise({redirectTo: '/details'});
+    }{
+        $routeProvider.otherwise({redirectTo: '/summary'});
+    }
+}]);
 
 app.service('ResumeService', function(){
     /**

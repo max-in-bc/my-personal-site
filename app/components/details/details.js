@@ -69,12 +69,14 @@ angular.module('myApp.details', ['ngRoute'])
 
 // at the bottom of your controller
   var checkCodeAndGetResume = function (callback) {
-    var passcode = prompt("Please enter a passcode to view", "ie. abc123");
-    if (passcode == null || passcode == '') {
-      $window.location.href = '/#/summary';
-      return;
-    }
-    isCorrectPassword(passcode.trim(), function(checkCode){
+      if ($scope.anonymized){
+            var passcode = prompt("Please enter a passcode to view", "ie. abc123");
+            if (passcode == null || passcode == '') {
+              $window.location.href = '/#/summary';
+              return;
+            }
+      }
+    isCorrectPassword($scope.anonymized ? passcode.trim() : null, function(checkCode){
       if (checkCode.result === true){
         $window.location.href = '/#/details';
         callback(checkCode.result, checkCode.data);
@@ -85,6 +87,8 @@ angular.module('myApp.details', ['ngRoute'])
     });
 
   };
+
+
   //and fire it after definition
   checkCodeAndGetResume(function(correctPassword, fullResume){
     if (correctPassword){

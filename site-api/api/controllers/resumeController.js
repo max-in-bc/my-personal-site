@@ -16,10 +16,31 @@ exports.get_full_resume = function(req, res) {
 
 
     var fs = require('fs');
+    function getResume(res){
+        //send unencrypted resume
+        fs.readFile('./full-resume.txt', 'utf8', function(err, data) {
+            if (err) {
+                res.json({results: -1,
+                    error: err});
+            }
+            else{
+                res.json({results: 1,
+                    data: data});
+            }
+        });
+    }
+
 
     //if there is an error return it
     if ( req.query.attempted_password == null){
-        res.json({results: -1});
+
+        //not anonymizing no password needed
+        if (req.query.anon == "false"){
+            getResume(res);
+        }
+        else{
+            res.json({results: -1});
+        }
     }
 
     //otherwise check for password
@@ -28,17 +49,7 @@ exports.get_full_resume = function(req, res) {
         //if password is correct
         if (req.query.attempted_password === HARDCODED_PASSWORD){
 
-            //send unencrypted resume
-            fs.readFile('./full-resume.txt', 'utf8', function(err, data) {
-                if (err) {
-                    res.json({results: -1,
-                        error: err});
-                }
-                else{
-                    res.json({results: 1,
-                              data: data});
-                }
-            });
+            getResume(res);
         }
 
         //incorrect password
