@@ -6,12 +6,12 @@
 
     <div class="summary-body">
         <div ng-show="anonymized"><p>I am an on-call web app expert. I often fix emergency issues such as immediate scaling, or a crashed service, and I often implement new features and components to already existing applications. As a jack-of-all-trades I pride myself in being able to fix any web concern for your company.</p></div>
-        <div class="details" ng-show="anonymized && details"><p>I specialize in MEAN (MongoDB, Express, AngularJS, NodeJS)-stack and LAMP (Linux, Apache, MySQL, PHP/Python)-stack applations, but I have been known to dabble with lots of other libraries and frameworks for JS (React, Vue) and Python (Pyramid, Django), among others. </p>
-            <div class="show-more-div">
+        <div class="details" ng-show="largeScreen || (anonymized && details)"><p>I specialize in MEAN (MongoDB, Express, AngularJS, NodeJS)-stack and LAMP (Linux, Apache, MySQL, PHP/Python)-stack applations, but I have been known to dabble with lots of other libraries and frameworks for JS (React, Vue) and Python (Pyramid, Django), among others. </p>
+            <div ng-show="!largeScreen" class="show-more-div">
                 <button class="show-more-button" ng-click="details = !details">{{!details ? 'more' : 'less'}}</button>
             </div>
         </div>
-        <div class="stack-info" ng-show="anonymized && !details"><p>MongoDB - 4 years, Express - 3 years, AngularJS - 3 years, NodeJS - 5 years, Apache - 8 years, MySQL - 8 years, PHP - 8 years, Python - 8 years.</p>
+        <div class="stack-info" ng-show="!largeScreen && anonymized && !details"><p>MongoDB - 4 years, Express - 3 years, AngularJS - 3 years, NodeJS - 5 years, Apache - 8 years, MySQL - 8 years, PHP - 8 years, Python - 8 years.</p>
             <div class="show-more-div">
                 <button class="show-more-button" ng-click="details = !details">{{!details ? 'more' : 'less'}}</button>
             </div>

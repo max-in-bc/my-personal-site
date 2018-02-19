@@ -9,8 +9,9 @@ angular.module('myApp.summary', ['ngRoute'])
   });
 }])
 
-.controller('SummaryCtrl', ['$scope', function($scope) {
+.controller('SummaryCtrl', ['$scope','$window', function($scope, $window) {
     $scope.anonymized = location.host == 'torontoweb.ninja' ? true : false;
     $scope.details = false;
+    $scope.largeScreen = $window.innerWidth > 666;
 
 }]);
