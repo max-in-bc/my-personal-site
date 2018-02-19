@@ -11,5 +11,6 @@ angular.module('myApp.summary', ['ngRoute'])
 
 .controller('SummaryCtrl', ['$scope', function($scope) {
     $scope.anonymized = location.host == 'torontoweb.ninja' ? true : false;
+    $scope.details = false;
 
 }]);

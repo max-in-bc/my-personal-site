@@ -6,6 +6,16 @@
 
     <div class="summary-body">
         <div ng-show="anonymized"><p>I am an on-call web app expert. I often fix emergency issues such as immediate scaling, or a crashed service, and I often implement new features and components to already existing applications. As a jack-of-all-trades I pride myself in being able to fix any web concern for your company.</p></div>
+        <div class="details" ng-show="anonymized && details"><p>I specialize in MEAN (MongoDB, Express, AngularJS, NodeJS)-stack and LAMP (Linux, Apache, MySQL, PHP/Python)-stack applations, but I have been known to dabble with lots of other libraries and frameworks for JS (React, Vue) and Python (Pyramid, Django), among others. </p>
+            <div class="show-more-div">
+                <button class="show-more-button" ng-click="details = !details">{{!details ? 'more' : 'less'}}</button>
+            </div>
+        </div>
+        <div class="stack-info" ng-show="anonymized && !details"><p>MongoDB - 4 years, Express - 3 years, AngularJS - 3 years, NodeJS - 5 years, Apache - 8 years, MySQL - 8 years, PHP - 8 years, Python - 8 years.</p>
+            <div class="show-more-div">
+                <button class="show-more-button" ng-click="details = !details">{{!details ? 'more' : 'less'}}</button>
+            </div>
+        </div>
         <div ng-show="!anonymized"><p>I am a full-stack mobile and web developer, designing, creating, and maintaining apps for half a decade.</p></div>
         <p>I live in Toronto, and I have an honour's degree in Computer Science from the <a href="https://www.uoguelph.ca/registrar/calendars/undergraduate/2015-2016/c10/c10bcomp-sofs.shtml">University of Guelph</a></p>
         <p>Check out my personal <a href="https://github.com/max-in-to">Github</a> or reach out to me via email at <a href="mailto:max@torontoweb.ninja">max@torontoweb.ninja</a> <div ng-show="!anonymized">or by phone at 416-465-9210</div>

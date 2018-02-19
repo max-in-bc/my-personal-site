@@ -97,6 +97,17 @@ body,html {
   }
 }
 
+.stack-info{
+  font-size: 50%;
+  font-style: italic;
+  color: $stack-font-color;
+}
+.details{
+  font-style: italic;
+  font-size: 80%;
+  color: $stack-font-color;
+}
+
 /* Details Page */
 .section-header{
   font-family: 'Basic Bold';
