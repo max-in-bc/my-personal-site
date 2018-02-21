@@ -49,6 +49,12 @@ module.exports = function(grunt) {
                     },
                     {
                         expand: true,
+                        cwd: '.',
+                        src: 'MyResume.pdf',
+                        dest: 'public/',
+                    },
+                    {
+                        expand: true,
                         cwd: 'app',
                         src: 'index.html',
                         dest: 'public/',

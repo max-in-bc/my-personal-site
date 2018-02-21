@@ -7,6 +7,7 @@ body,html {
   text-align: center;
   font-family: 'Basic';
   background-color: $main-background-color;
+  overflow: scroll;
 }
 
 /* Header - Max Gardiner */
@@ -136,6 +137,21 @@ body,html {
     margin-top: 1em;
 
   }
+}
+
+
+.download-button-div{
+  border-bottom: 0.1em solid black;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-align: center;
+}
+.download-button{
+  color: $button-download-color;
+  background-color: $button-bg-color;
+  border-radius: 12px;
+  font-size: 16px;
+  padding: 5px;
 }
 
 
