@@ -56,11 +56,9 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'app',
-                        src: 'index-prod.html',
-                        dest: 'public',
-                        rename: function(dest, src) {
-                            return dest + "/index.html";
-                        }
+                        src: 'index.html',
+                        dest: 'public/'
+
                     }
                 ]
 
@@ -72,15 +70,6 @@ module.exports = function(grunt) {
                         cwd: '.',
                         src: 'MyResume.pdf',
                         dest: 'app/',
-                    },
-                    {
-                        expand: true,
-                        cwd: 'app',
-                        src: 'index-dev.html',
-                        dest: 'app',
-                        rename: function(dest, src) {
-                            return dest + "/index.html";
-                        }
                     }
                 ]
             }
@@ -109,6 +98,15 @@ module.exports = function(grunt) {
                 src: ['./public/app.js'],
                 dest: './public/app.js'
             }
+        },
+        env : {
+            dev: {
+                NODE_ENV : 'DEVELOPMENT'
+            },
+            prod : {
+                NODE_ENV : 'PRODUCTION'
+
+            }
         }
     });
 
@@ -117,8 +115,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-ng-annotate');
+    grunt.loadNpmTasks('grunt-env');
+
 
     //register grunt default task
-    grunt.registerTask('prod', ['copy:prod', 'ngAnnotate', 'concat', 'uglify']);
-    grunt.registerTask('default', ['copy:dev']);
+    grunt.registerTask('prod', ['env:prod','copy:prod', 'ngAnnotate', 'concat', 'uglify']);
+    grunt.registerTask('default', ['env:dev','copy:dev']);
 }
