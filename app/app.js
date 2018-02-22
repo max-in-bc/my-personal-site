@@ -4,7 +4,8 @@
 var app = angular.module('myApp', [
     'ngRoute',
     'myApp.summary',
-    'myApp.details'
+    'myApp.details',
+    'myApp.characterSheet'
 ]);
 
 
