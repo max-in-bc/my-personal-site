@@ -27,6 +27,13 @@ The simplest way to start this server is:
 yarn start
 ```
 
+To run for production mode (minified/concatenated/etc):
+
+```
+yarn prod
+```
+
+
 Now browse to the app at [`localhost:8000/index.html`][local-app-url].
 
 ```
@@ -156,3 +163,4 @@ For more information on AngularJS please check out [angularjs.org][angularjs].
 * February 13, 2018: Fixed project structure (see revisions above); made resume call with password call for security
 * February 15, 2018: Made torontoweb.ninja an anonymous site
 * February 20, 2018: Added download button for resume
+* February 22, 2018: Added dev and production modes as development was getting more complicated; character sheet :O
