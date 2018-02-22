@@ -16,13 +16,18 @@
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-uglify": "^3.3.0",
+    "grunt-env": "^0.4.4",
     "grunt-ng-annotate": "^3.0.0",
     "http-server": "^0.9.0"
   },
   "scripts": {
-    "prestart": "sass --watch app/assets/scss:app/assets/css & yarn",
-    "start": "http-server -a 0.0.0.0 -p 8081 -c-1 ./app && pkill ruby && pkill fsevent_watch",
-    "production": "pkill ruby && pkill fsevent_watch && http-server -a 0.0.0.0 -p 80 -c-1 ./public",
+    "start": "yarn dev",
+    "startscss": "sass --watch app/assets/scss:app/assets/css",
+    "endscss": "pkill ruby && pkill fsevent_watch",
+    "dev": "yarn startscss & yarn && grunt && yarn devserver && yarn endscss",
+    "devserver": "sudo http-server -a 0.0.0.0 -p 80 -c-1 ./app",
+    "prod": "yarn && grunt prod && yarn prodserver",
+    "prodserver": "sudo http-server -a 0.0.0.0 -p 80 -c-1 ./public",
     "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@assets/bower_components'), 'app/assets/bower_components', 'junction') } catch (e) { }\""
   },
   "engines": {

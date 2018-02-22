@@ -3,7 +3,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         //grunt task configuration will go here
         copy: {
-            main: {
+            prod: {
                 files: [
                     {
                         expand: true,
@@ -57,10 +57,21 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: 'app',
                         src: 'index.html',
-                        dest: 'public/',
-                    },
+                        dest: 'public/'
+
+                    }
                 ]
 
+            },
+            dev: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '.',
+                        src: 'MyResume.pdf',
+                        dest: 'app/',
+                    }
+                ]
             }
         },
         ngAnnotate: {
@@ -87,6 +98,15 @@ module.exports = function(grunt) {
                 src: ['./public/app.js'],
                 dest: './public/app.js'
             }
+        },
+        env : {
+            dev: {
+                NODE_ENV : 'DEVELOPMENT'
+            },
+            prod : {
+                NODE_ENV : 'PRODUCTION'
+
+            }
         }
     });
 
@@ -95,7 +115,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-ng-annotate');
+    grunt.loadNpmTasks('grunt-env');
+
 
     //register grunt default task
-    grunt.registerTask('default', ['copy', 'ngAnnotate', 'concat', 'uglify']);
+    grunt.registerTask('prod', ['env:prod','copy:prod', 'ngAnnotate', 'concat', 'uglify']);
+    grunt.registerTask('default', ['env:dev','copy:dev']);
 }
