@@ -95,16 +95,6 @@ app/                    --> all of the source files for the application
         details.js              --> the controller logic
   app.js                --> main application module
   index.html            --> app layout file (the main html template file of the app)
-site-api/               --> simple NodeJS/Express server for serving simple requests used by my site
-  api/                    --> structure for api modules
-    controllers/            --> all controllers for node api modules
-      passwordController.js    --> controller for full resume password
-      resumeController.js    --> controller for retrieving my resume
-    routes/                 --> all routes for node api modules
-      passwordRoutes.js        --> route info for full resume password
-      resumeRoutes.js        --> route info for full resume
-  package.json            --> yarn/npm package manager file for API
-  server.js               --> the main nodejs server
 package.json          --> yarn/npm package manager file for site
 README.md             --> this file that you are reading
 ```
@@ -164,3 +154,4 @@ For more information on AngularJS please check out [angularjs.org][angularjs].
 * February 15, 2018: Made torontoweb.ninja an anonymous site
 * February 20, 2018: Added download button for resume
 * February 22, 2018: Added dev and production modes as development was getting more complicated; character sheet :O
+* May 8, 2018: Moved api to separate repo; setup on Canadian EC2 instance
